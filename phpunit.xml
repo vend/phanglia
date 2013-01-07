@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="./test/bootstrap.php" colors="true">
+    <testsuites>
+        <testsuite name="Phanglia Test Suite">
+            <directory suffix="Test.php">./test/Phanglia/</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./lib/Phanglia/</directory>
+        </whitelist>
+    </filter>
+</phpunit>
