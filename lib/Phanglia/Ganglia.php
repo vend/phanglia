@@ -11,6 +11,7 @@ class Ganglia
     const SLOPE_BOTH        = 3;
     const SLOPE_UNSPECIFIED = 4;
 
+    // Valid slopes
     public static $slopes = array(
         self::SLOPE_ZERO,
         self::SLOPE_POSITIVE,
@@ -34,6 +35,7 @@ class Ganglia
     const TYPE_FLOAT           = 'float';
     const TYPE_DOUBLE          = 'double';
 
+    // Valid XDR types
     public static $types = array(
         self::TYPE_DOUBLE,
         self::TYPE_FLOAT,
