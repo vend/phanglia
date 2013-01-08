@@ -102,6 +102,20 @@ class Socket
     }
 
     /**
+     * Sends the given metric and value(s)
+     *
+     * @param Metric $metric
+     * @param mixed $value
+     */
+    public function sendMetric(Metric $metric, $value = null)
+    {
+        $this->send($metric->getMetadataPacket());
+        if ($value !== null) {
+            $this->send($metric->getValuePacket($value));
+        }
+    }
+
+    /**
      * Destructor
      */
     public function __destruct()
