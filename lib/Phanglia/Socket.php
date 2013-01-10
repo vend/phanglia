@@ -98,7 +98,7 @@ class Socket
      */
     public function send($payload)
     {
-        return fwrite($this->getStream(), $payload);
+        return @fwrite($this->getStream(), $payload);
     }
 
     /**
@@ -106,13 +106,16 @@ class Socket
      *
      * @param Metric $metric
      * @param mixed $value
+     * @param boolean Success
      */
     public function sendMetric(Metric $metric, $value = null)
     {
-        $this->send($metric->getMetadataPacket());
-        if ($value !== null) {
-            $this->send($metric->getValuePacket($value));
+        if ($this->send($metric->getMetadataPacket())) {
+            if ($value !== null) {
+                return $this->send($metric->getValuePacket($value));
+            }
         }
+        return false;
     }
 
     /**
