@@ -69,13 +69,6 @@ class Metric
     protected $dmax = 0;
 
     /**
-     * Associated values
-     *
-     * @var array<string>
-     */
-    protected $values = array();
-
-    /**
      * Constructor
      *
      * @param string $name
@@ -148,16 +141,6 @@ class Metric
     public function setGroup($group)
     {
         $this->group = $group;
-    }
-
-    /**
-     * Adds a value to this metric
-     *
-     * @param string $value
-     */
-    public function addValue($value)
-    {
-        $this->values[] = $value;
     }
 
     /**
