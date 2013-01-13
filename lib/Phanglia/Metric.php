@@ -59,11 +59,25 @@ class Metric
     protected $units = '';
 
     /**
+     * The soft timeout for metric updates
+     *
+     * If longer than this many seconds have passed since a metric was timestamped
+     * as having been updated, you may consider that metric inaccurate.
+     *
+     * Ganglia doesn't take any action when the soft timeout is hit.
+     *
      * @var int
      */
-    protected $tmax = 0;
+    protected $tmax = 60;
 
     /**
+     * The hard timeout for metric updates
+     *
+     * If longer than this many seconds have passed since a metric was timestamped
+     * as having been updated, Ganglia will remove the metric.
+     *
+     * A value of zero means no hard-limit.
+     *
      * @var int
      */
     protected $dmax = 0;
@@ -72,10 +86,10 @@ class Metric
      * Constructor
      *
      * @param string $name
-     * @param string $type The value data type, one of string, int8, uint8, int16, uint16, int32, uint32, float, double
-     * @param int    $slope
-     * @param int    $tmax
-     * @param int    $dmax
+     * @param string $type  The value data type, one of string, int8, uint8, int16, uint16, int32, uint32, float, double
+     * @param int    $slope The sign of the deriviative of your value function
+     * @param int    $tmax  The maximum expected interval between updates
+     * @param int    $dmax  The maximum interval between updates before the metric is removed
      */
     public function __construct(
         $name,
