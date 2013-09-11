@@ -109,6 +109,16 @@ class Metric
     }
 
     /**
+     * Gets the name of the metric
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
      * Sets the value type of this metric
      *
      * @param unknown $type
