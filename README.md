@@ -4,6 +4,8 @@
 A small set of PSR-0 compatible classes for producing and sending GMetric packets
 for Ganglia monitoring.
 
+[![Build Status](https://travis-ci.org/vend/phanglia.png)](https://travis-ci.org/vend/phanglia)
+
 ### Usage
 
 ```php
