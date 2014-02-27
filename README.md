@@ -5,6 +5,8 @@ A small set of PSR-0 compatible classes for producing and sending GMetric packet
 for Ganglia monitoring.
 
 [![Build Status](https://travis-ci.org/vend/phanglia.png)](https://travis-ci.org/vend/phanglia)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/vend/phanglia/badges/quality-score.png?s=86a0badbf27f88592185b7e046146cc7e11b5a00)](https://scrutinizer-ci.com/g/vend/phanglia/)
+[![Code Coverage](https://scrutinizer-ci.com/g/vend/phanglia/badges/coverage.png?s=b9612b582ab4f994b1b688db76d7e9f751bc658b)](https://scrutinizer-ci.com/g/vend/phanglia/)
 
 ### Usage
 
