@@ -6,6 +6,8 @@ A small library for producing and sending GMetric packets for Ganglia monitoring
 [![Build Status](https://travis-ci.org/vend/phanglia.png)](https://travis-ci.org/vend/phanglia)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/vend/phanglia/badges/quality-score.png?s=86a0badbf27f88592185b7e046146cc7e11b5a00)](https://scrutinizer-ci.com/g/vend/phanglia/)
 [![Code Coverage](https://scrutinizer-ci.com/g/vend/phanglia/badges/coverage.png?s=b9612b582ab4f994b1b688db76d7e9f751bc658b)](https://scrutinizer-ci.com/g/vend/phanglia/)
+[![Latest Stable Version](https://poser.pugx.org/vend/phanglia/v/stable.svg)](https://packagist.org/packages/vend/phanglia)
+[![License](https://poser.pugx.org/vend/phanglia/license.svg)](https://packagist.org/packages/vend/phanglia)
 
 ### Usage
 
