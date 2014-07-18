@@ -21,9 +21,9 @@ class Metric
     /**
      * Whether to spoof the metric's hostname
      *
-     * @var int
+     * @var boolean
      */
-    protected $spoof = 0;
+    protected $spoof = false;
 
     /**
      * This metric's data type
@@ -179,7 +179,7 @@ class Metric
         $packer->uint32($type);        // Packet type (metadata or value)
         $packer->string($this->host);  // Host name
         $packer->string($this->name);  // Metric name
-        $packer->uint32($this->spoof); // Spoofing enabled?
+        $packer->uint32((int)$this->spoof); // Spoofing enabled?
 
         return $packer;
     }
