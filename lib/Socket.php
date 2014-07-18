@@ -123,7 +123,7 @@ class Socket implements LoggerAwareInterface
     public function sendMetric(Metric $metric, $value = null)
     {
         $this->logger->notice(
-            'Sending metric: %name% (current: %value%)',
+            'Sending metric: {name} (current: {value})',
             ['name' => $metric->getName(), 'value' => $value]
         );
 
