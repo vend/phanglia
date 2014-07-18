@@ -2,8 +2,19 @@
 
 namespace Phanglia;
 
-class Socket
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
+use Psr\Log\NullLogger;
+
+/**
+ * Socket class
+ *
+ * Wraps a UDP resource, used to send metric values over a network
+ */
+class Socket implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * @var string
      */
@@ -26,10 +37,11 @@ class Socket
      * @param int $port
      * @param array $options
      */
-    public function __construct($host = '127.0.0.1', $port = 8649, array $options = array())
+    public function __construct($host = '127.0.0.1', $port = 8649, array $options = [])
     {
         $this->address = 'udp://' . $host . ':' . $port;
         $this->options = array_merge($this->getDefaultOptions(), $options);
+        $this->logger  = new NullLogger();
     }
 
     /**
@@ -37,11 +49,11 @@ class Socket
      */
     protected function getDefaultOptions()
     {
-        return array(
-            'stream_options'     => array(),
-            'stream_params'      => array(),
+        return [
+            'stream_options'     => [],
+            'stream_params'      => [],
             'timeout_read_write' => 1
-        );
+        ];
     }
 
     /**
@@ -106,16 +118,43 @@ class Socket
      *
      * @param Metric $metric
      * @param mixed $value
-     * @param boolean Success
+     * @return boolean Whether a metric was sent successfully
      */
     public function sendMetric(Metric $metric, $value = null)
     {
+        $this->logger->notice(
+            'Sending metric: %name% (current: %value%)',
+            ['name' => $metric->getName(), 'value' => $value]
+        );
+
         if ($this->send($metric->getMetadataPacket())) {
             if ($value !== null) {
                 return $this->send($metric->getValuePacket($value));
             }
         }
+
         return false;
+    }
+
+    /**
+     * Whether the socket is open
+     *
+     * @return bool
+     */
+    public function isOpen()
+    {
+        return (boolean)($this->stream);
+    }
+
+    /**
+     * Closes the stream if it is open
+     */
+    public function close()
+    {
+        if ($this->stream) {
+            @fclose($this->stream);
+            $this->stream = null;
+        }
     }
 
     /**
@@ -123,9 +162,6 @@ class Socket
      */
     public function __destruct()
     {
-        if ($this->stream) {
-            @fclose($this->stream);
-            $this->stream = null;
-        }
+        $this->close();
     }
 }

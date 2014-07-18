@@ -1,10 +1,6 @@
 <?php
 
-namespace Phanglia\Test;
-
-use Phanglia\Ganglia;
-use Phanglia\Packer;
-use Phanglia\Metric;
+namespace Phanglia;
 
 class MetricTest extends Test
 {
@@ -12,6 +8,7 @@ class MetricTest extends Test
     {
         $metric = new Metric('test_metric', Ganglia::TYPE_DOUBLE, Ganglia::SLOPE_BOTH, 50, 10);
         $this->assertTrue($metric instanceof Metric);
+        $this->assertEquals('test_metric', $metric->getName());
     }
 
     public function testGetPackets()
@@ -99,5 +96,21 @@ class MetricTest extends Test
         $metric->setGroup('agroup');
 
         $this->assertEquals($correct, $metric->getValuePacket(1025));
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testSetTypeInvalid()
+    {
+        new Metric('test_metric', 'some_invalid_type');
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testSetSlopeInvalid()
+    {
+        new Metric('test_metric', Ganglia::TYPE_DOUBLE, 'some_invalid_slope');
     }
 }

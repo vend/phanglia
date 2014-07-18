@@ -12,13 +12,13 @@ class Ganglia
     const SLOPE_UNSPECIFIED = 4;
 
     // Valid slopes
-    public static $slopes = array(
+    public static $slopes = [
         self::SLOPE_ZERO,
         self::SLOPE_POSITIVE,
         self::SLOPE_NEGATIVE,
         self::SLOPE_BOTH,
         self::SLOPE_UNSPECIFIED
-    );
+    ];
 
     // Magic numbers
     const MAGIC_NUMBER_METADATA = 128;
@@ -36,7 +36,7 @@ class Ganglia
     const TYPE_DOUBLE          = 'double';
 
     // Valid XDR types
-    public static $types = array(
+    public static $types = [
         self::TYPE_DOUBLE,
         self::TYPE_FLOAT,
         self::TYPE_INT,
@@ -46,5 +46,5 @@ class Ganglia
         self::TYPE_UNSIGNED_BYTE,
         self::TYPE_UNSIGNED_INT,
         self::TYPE_UNSIGNED_SHORT
-    );
+    ];
 }

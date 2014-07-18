@@ -1,8 +1,7 @@
 # Phanglia
 ## PHP bindings for Ganglia
 
-A small set of PSR-0 compatible classes for producing and sending GMetric packets
-for Ganglia monitoring.
+A small library for producing and sending GMetric packets for Ganglia monitoring.
 
 [![Build Status](https://travis-ci.org/vend/phanglia.png)](https://travis-ci.org/vend/phanglia)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/vend/phanglia/badges/quality-score.png?s=86a0badbf27f88592185b7e046146cc7e11b5a00)](https://scrutinizer-ci.com/g/vend/phanglia/)
@@ -26,4 +25,4 @@ $socket->sendMetric($metric, 'some value');
 ### Installation
 
 Phanglia is available via composer, with a package name of `vend/phanglia`. Or
-point your PSR-0 autoloader at the lib directory.
+point your PSR-4 autoloader at the lib directory.

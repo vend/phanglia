@@ -1,9 +1,6 @@
 <?php
 
-namespace Phanglia\Test;
-
-use Phanglia\Packer;
-use Phanglia\Test\Test;
+namespace Phanglia;
 
 class PackerTest extends Test
 {
@@ -61,5 +58,16 @@ class PackerTest extends Test
         $packer->string('foo');
         $packer->uint32(1);
         $this->assertEquals((string)$packer, "\x00\x00\x00\x03foo\x00\x00\x00\x00\x01");
+    }
+
+    public function testClear()
+    {
+        $packer = new Packer();
+        $packer->string('foo');
+        $packer->uint32(1);
+        $packer->clear();
+        $packer->string('bar');
+
+        $this->assertEquals((string)$packer, "\x00\x00\x00\x03bar\x00");
     }
 }
