@@ -2,8 +2,6 @@
 
 namespace Phanglia;
 
-use Phanglia\Packer;
-
 class Metric
 {
     /**
@@ -90,6 +88,7 @@ class Metric
      * @param int    $slope The sign of the deriviative of your value function
      * @param int    $tmax  The maximum expected interval between updates
      * @param int    $dmax  The maximum interval between updates before the metric is removed
+     * @param string $units The unit label
      */
     public function __construct(
         $name,
@@ -121,27 +120,29 @@ class Metric
     /**
      * Sets the value type of this metric
      *
-     * @param unknown $type
+     * @param string $type See Ganglia::TYPE_*
      * @throws \InvalidArgumentException
      */
     public function setType($type)
     {
-        if (!in_array($type, Ganglia::$types)) {
+        if (!in_array($type, Ganglia::$types, true)) {
             throw new \InvalidArgumentException('Invalid value type');
         }
+
         $this->type = $type;
     }
 
     /***
      * Sets the slope
      *
-     * @param int $slope
+     * @param int $slope See Ganglia::SLOPE_*
      */
     public function setSlope($slope)
     {
-        if (!in_array($slope, Ganglia::$slopes)) {
+        if (!in_array($slope, Ganglia::$slopes, true)) {
             throw new \InvalidArgumentException('Invalid slope type');
         }
+
         $this->slope = $slope;
     }
 
@@ -169,7 +170,7 @@ class Metric
 
     /**
      * @param int $type See Ganglia::TYPE_*
-     * @return \Phanglia\Xdr\Packer
+     * @return Packer
      */
     protected function getPacker($type)
     {
@@ -209,6 +210,7 @@ class Metric
     }
 
     /**
+     * @param mixed $value
      * @return array<string>
      */
     public function getValuePacket($value)

@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
-    bootstrap="./test/bootstrap.php" 
+    bootstrap="bootstrap.php"
     processIsolation="false"
     colors="true"
 >
     <testsuites>
         <testsuite name="Phanglia Test Suite">
-            <directory suffix="Test.php">./test/Phanglia/</directory>
+            <directory suffix="Test.php">test</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory suffix=".php">./lib/Phanglia/</directory>
+            <directory suffix=".php">lib</directory>
         </whitelist>
+        <blacklist>
+            <file>test/bootstrap.php</file>
+        </blacklist>
     </filter>
 </phpunit>

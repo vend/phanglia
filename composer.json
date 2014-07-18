@@ -16,8 +16,8 @@
     },
 
     "autoload": {
-        "psr-0": {
-            "Phanglia": "lib/"
+        "psr-4": {
+            "Phanglia\\": "lib"
         }
     }
 }
