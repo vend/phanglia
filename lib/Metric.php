@@ -211,7 +211,7 @@ class Metric
 
     /**
      * @param mixed $value
-     * @return string
+     * @return array<string>
      */
     public function getValuePacket($value)
     {

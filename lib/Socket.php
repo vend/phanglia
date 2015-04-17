@@ -50,6 +50,7 @@ class Socket implements LoggerAwareInterface
     protected function getDefaultOptions()
     {
         return [
+            'hostname'           => null,
             'stream_options'     => [],
             'stream_params'      => [],
             'timeout_read_write' => 1
@@ -126,6 +127,10 @@ class Socket implements LoggerAwareInterface
             'Sending metric: {name} (current: {value})',
             ['name' => $metric->getName(), 'value' => $value]
         );
+
+        if (!empty($this->options['hostname'])) {
+            $metric->setHost($this->options['hostname'], true);
+        }
 
         if ($this->send($metric->getMetadataPacket())) {
             if ($value !== null) {
