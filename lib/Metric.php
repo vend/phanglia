@@ -81,6 +81,16 @@ class Metric
     protected $dmax = 0;
 
     /**
+     * @var string
+     */
+    protected $desc;
+
+    /**
+     * @var string
+     */
+    protected $title;
+
+    /**
      * Constructor
      *
      * @param string $name
@@ -166,6 +176,22 @@ class Metric
     public function setGroup($group)
     {
         $this->group = $group;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @param string $desc
+     */
+    public function setDesc($desc)
+    {
+        $this->desc = $desc;
     }
 
     /**
