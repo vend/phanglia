@@ -106,6 +106,8 @@ class MetricTest extends Test
         $metric = new Metric('something', Ganglia::TYPE_FLOAT, Ganglia::SLOPE_BOTH, 60, 0, 'meh/s');
         $metric->setHost('some.host.example.com', true);
         $metric->setGroup('some-group');
+        $metric->setTitle('A title');
+        $metric->setDesc('A description');
 
         $this->assertEquals($metadata, $metric->getMetadataPacket());
         $this->assertEquals($value, $metric->getValuePacket(42.3333));

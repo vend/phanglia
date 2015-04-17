@@ -224,12 +224,26 @@ class Metric
         $packer->uint32($this->tmax);  // tmax
         $packer->uint32($this->dmax);  // dmax
 
+        $i = 0;
+        isset($this->title) && $i++;
+        isset($this->desc)  && $i++;
+        isset($this->group) && $i++;
+
+        $packer->uint32($i); // The number of extra elements
+
+        if (isset($this->title)) {
+            $packer->string('TITLE');
+            $packer->string($this->title);
+        }
+
+        if (isset($this->desc)) {
+            $packer->string('DESC');
+            $packer->string($this->desc);
+        }
+
         if (isset($this->group)) {
-            $packer->uint32(1);        // The number of extra elements
             $packer->string('GROUP');
             $packer->string($this->group);
-        } else {
-            $packer->uint32(0);
         }
 
         return (string)$packer;
